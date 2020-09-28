@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Server-Sent Events</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <p>Events</p>
+    <div id="list"></div>
+
+    <script>
+      const evtSource = new EventSource("/sse/reqId1");
+      evtSource.onmessage = function(event) {
+        const newElement = document.createElement("li");
+        const eventList = document.getElementById("list");
+        newElement.innerHTML = "message: " + event.data;
+        eventList.appendChild(newElement);
+      }
+    </script>
+  </body>
+</html>
